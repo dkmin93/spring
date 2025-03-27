@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.simple.command.MemberVO;
 import com.simple.command.MemberVO2;
+import com.simple.command.MemberVO3;
 
 //진짜 진짜 쉬운방법
 
@@ -123,6 +124,25 @@ public class RequestController {
 		} else {
 			return "request/req_quiz01_no";
 		}
+		
+	}
+	
+	@RequestMapping("/selfstudy")
+	public String selfstudy() {
+		return "request/selfstudy";
+	}
+	
+	@RequestMapping(value="/signup", method=RequestMethod.POST)
+	public String signup(MemberVO3 vo3) {
+		
+		System.out.println(vo3.toString()); // null 값 체크하려면 .equals("")로 해주기
+		if(vo3.getId().equals("") || vo3.getPw().equals("") || vo3.getName().equals("")) {
+			return "request/signup_fail";
+		} else {
+			return "request/signup_success";
+		}
+		
+		
 		
 	}
 		

@@ -22,7 +22,11 @@
 	</beans:bean>
 
 	<!-- base-package를 읽어서 @Controller, @Service, @Component, @Repository이 붙은 클래스를 bean으로 등록한다 -->
-	<context:component-scan base-package="com.simple.controller" />
+	<context:component-scan base-package="com.simple.*" />
+	<!-- include와 exclude를 여기에 추가해서 제외, 포함여부를 지정할 수 있다. -->
+	
+	<!-- 서비스 객체를 빈으로 등록 -->
+	<!-- <beans:bean id="scoreService" class="com.simple.score.service.ScoreServiceImpl" /> -->
 	
 	
 	
