@@ -12,4 +12,5 @@ public interface ScoreService {
 	
 	void delete(String sno); //delete 메서드
 
+	
 }

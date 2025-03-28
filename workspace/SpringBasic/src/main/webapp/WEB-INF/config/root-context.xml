@@ -5,5 +5,31 @@
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-		
+	<!-- HikariConfig 빈 등록, 컨테이너에 객체 생성, setter주입으로 name에 value 저장-->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="SPRING" /> <!-- 여기에 오라클 아이디 -->
+		<property name="password" value="SPRING" />	<!-- 여기에 오라클 패스워드 -->
+	</bean>
+
+	<!-- HikariDataSource 빈 등록, 컨테이너에 ds라는 객체 생성 -->
+	<!-- 생성자 주입으로 위에서 선언한 hikariConfig 주입 -->
+	<!-- 커넥션 풀 적용 의존성 주입 -->
+	<bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+
+	<!-- 마이바티스 세션팩토리 객체(매퍼를 전역적으로 여기에서 관리해준다) -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<property name="dataSource" ref="ds" /> <!-- 바로 위에서 선언하여 생성된 객체인 빈의 id를 참조 받아야한다. -->
+		<property name="mapperLocations" value="classpath:/sqlmap/*.xml" />
+		<property name="configLocation" value="classpath:/mybatis-config/mybatis-config.xml" />
+	</bean>
+	
+	<!-- 매퍼 인터페이스를 읽을 패키지 경로가 base-package에 들어가야한다. -->
+	<!-- 이 인터페이스를 읽어서 xml을 관리해준다. -->
+	<!-- 문법마다 다르지만 일단 *은 2개를 넣기 -->
+	<mybatis-spring:scan base-package="com.simple.**.dao"/> <!-- dao로 끝나는 폴더만 읽어들인다. 충돌방지 -->
+
 </beans>

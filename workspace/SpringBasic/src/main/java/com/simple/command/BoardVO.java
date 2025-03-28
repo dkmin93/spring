@@ -2,6 +2,7 @@ package com.simple.command;
 
 public class BoardVO {
 
+	private int bno;
 	private String name;
 	private String title;
 	private String content;
@@ -13,17 +14,21 @@ public class BoardVO {
 
 	@Override
 	public String toString() {
-		return "BoardVO [name=" + name + ", title=" + title + ", content=" + content + ", memo=" + memo + "]";
+		return "BoardVO [bno=" + bno + ", name=" + name + ", title=" + title + ", content=" + content + ", memo=" + memo
+				+ "]";
 	}
 
 
 
-	public BoardVO(String name, String title, String content, String memo) {
+
+
+	public BoardVO(String name, String title, String content, String memo, int bno) {
 		super();
 		this.name = name;
 		this.title = title;
 		this.content = content;
 		this.memo = memo;
+		this.bno = bno;
 	}
 
 	public String getName() {
@@ -57,5 +62,14 @@ public class BoardVO {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+	
+	public int getBno() {
+		return bno;
+	}
+
+	public void setBno(int bno) {
+		this.bno = bno;
+	}
+	
 	
 }

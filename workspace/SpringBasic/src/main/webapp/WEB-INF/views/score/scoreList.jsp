@@ -11,7 +11,7 @@
 	
 	<h2>점수 결과 화면</h2>
 		<c:forEach var="vo" items="${list}" varStatus="status">
-		번호: ${status.index}
+		번호: ${vo.sno}
 		이름: ${vo.name}
 		국어: ${vo.kor}
 		영어: ${vo.eng}

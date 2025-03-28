@@ -2,6 +2,7 @@ package com.simple.command;
 
 public class ScoreVO {
 
+	private int sno;
 	private String name;
 	private String kor;
 	private String eng;
@@ -11,17 +12,18 @@ public class ScoreVO {
 		
 	}
 
-	public ScoreVO(String name, String kor, String eng, String math) {
+	public ScoreVO(String name, String kor, String eng, String math, int sno) {
 		super();
 		this.name = name;
 		this.kor = kor;
 		this.eng = eng;
 		this.math = math;
+		this.sno = sno;
 	}
 
 	@Override
 	public String toString() {
-		return "ScoreVO [name=" + name + ", kor=" + kor + ", eng=" + eng + ", math=" + math + "]";
+		return "ScoreVO [sno=" + sno + ", name=" + name + ", kor=" + kor + ", eng=" + eng + ", math=" + math + "]";
 	}
 
 	public String getName() {
@@ -56,6 +58,13 @@ public class ScoreVO {
 		this.math = math;
 	}
 	
+	public int getSno() {
+		return sno;
+	}
+
+	public void setSno(int sno) {
+		this.sno = sno;
+	}
 	
 	
 	
